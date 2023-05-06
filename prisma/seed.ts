@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 const prisma = new PrismaClient();
 
 const userData: Prisma.UserCreateInput[] = Array.from({ length: 100 }).map(
-  (_, i) => ({
+  (_) => ({
     name: faker.internet.userName(),
     email: faker.internet.email(),
     password: faker.internet.password(),
@@ -13,13 +13,13 @@ const userData: Prisma.UserCreateInput[] = Array.from({ length: 100 }).map(
 );
 
 const cityData: Prisma.CityCreateInput[] = Array.from({ length: 100 }).map(
-  (_, i) => ({
+  (_) => ({
     name: faker.address.city(),
   })
 );
 
 const placeData: Prisma.PlaceCreateInput[] = Array.from({ length: 100 }).map(
-  (_, i) => ({
+  (_) => ({
     name: `${faker.company.catchPhraseAdjective()} ${faker.company.catchPhraseNoun()}`,
     description: faker.lorem.paragraph(),
     image: faker.image.city(500, 500, true),
@@ -64,6 +64,7 @@ async function main() {
     const user = await prisma.user.create({
       data: u,
     });
+    console.log(`Created user with id: ${user.id}`);
   }
   for (const c of cityData) {
     const city = await prisma.city.create({

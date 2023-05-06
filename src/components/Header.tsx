@@ -12,7 +12,6 @@ export default function Header() {
   const { user, setUser } = useUser();
   const { setToken } = useToken();
   const { theme, toggleTheme } = useTheme();
-  const d = theme.type === "light" ? "M3 3h18v18H3z" : "M3 21h18V3H3v18z";
   const isLight = theme.type === "light";
 
   const handleLogout = () => {
